@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/item_main">
+
+    <fragment
+        android:id="@+id/item_main"
+        android:name="toledo24.pro.presentation.home.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/item_catalog"
+        android:name="toledo24.pro.presentation.catalog.CatalogFragment"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_item_catalog_to_item_subcatalog"
+            app:destination="@id/item_subcatalog" />
+    </fragment>
+    <fragment
+        android:id="@+id/item_cart"
+        android:name="toledo24.pro.presentation.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/item_profile"
+        android:name="toledo24.pro.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/item_subcatalog"
+        android:name="toledo24.pro.presentation.catalog.SubCatalogFragment"
+        android:label="SubCatalogFragment"
+        tools:layout="@layout/fragment_subcatalog">
+        <action
+            android:id="@+id/action_item_subcatalog_to_subSubCatalogFragment"
+            app:destination="@id/subSubCatalogFragment" />
+        <action
+            android:id="@+id/action_item_subcatalog_to_item_catalog"
+            app:destination="@id/item_catalog" />
+    </fragment>
+    <fragment
+        android:id="@+id/subSubCatalogFragment"
+        android:name="toledo24.pro.presentation.catalog.SubSubCatalogFragment"
+        android:label="fragment_sub_sub_catalog"
+        tools:layout="@layout/fragment_sub_sub_catalog" >
+        <action
+            android:id="@+id/action_subSubCatalogFragment_to_subSubSubCatalogFragment"
+            app:destination="@id/subSubSubCatalogFragment" />
+        <action
+            android:id="@+id/action_subSubCatalogFragment_to_item_catalog"
+            app:destination="@id/item_catalog" />
+    </fragment>
+    <fragment
+        android:id="@+id/subSubSubCatalogFragment"
+        android:name="toledo24.pro.presentation.catalog.SubSubSubCatalogFragment"
+        android:label="fragment_sub_sub_sub_catalog"
+        tools:layout="@layout/fragment_sub_sub_sub_catalog" >
+        <action
+            android:id="@+id/action_subSubSubCatalogFragment_to_subSubSubSubCatalogFragment"
+            app:destination="@id/subSubSubSubCatalogFragment" />
+        <action
+            android:id="@+id/action_subSubSubCatalogFragment_to_item_catalog"
+            app:destination="@id/item_catalog" />
+    </fragment>
+    <fragment
+        android:id="@+id/subSubSubSubCatalogFragment"
+        android:name="toledo24.pro.presentation.catalog.SubSubSubSubCatalogFragment"
+        android:label="fragment_sub_sub_sub_sub_catalog"
+        tools:layout="@layout/fragment_sub_sub_sub_sub_catalog" >
+        <action
+            android:id="@+id/action_subSubSubSubCatalogFragment_to_item_catalog"
+            app:destination="@id/item_catalog" />
+    </fragment>
+</navigation>
