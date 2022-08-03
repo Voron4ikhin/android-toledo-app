@@ -23,6 +23,7 @@
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/catalog_item.xml" value="0.5386199794026777" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_cart.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog_products.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_main.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_profile.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_sub_sub_catalog.xml" value="0.67" />
@@ -30,8 +31,8 @@
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_sub_sub_sub_sub_catalog.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_subcatalog.xml" value="0.25" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_subsubcatalog.xml" value="0.20104166666666667" />
-        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/item_card.xml" value="0.20833333333333334" />
-        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/item_with_text.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/item_card.xml" value="0.5" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/item_with_text.xml" value="0.33" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/list_header.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/subcatalog_list_item.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/menu/bottom_menu.xml" value="0.20833333333333334" />

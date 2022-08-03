@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import toledo24.pro.data.network.autorization.ResponseGetSmsModel
 import toledo24.pro.data.network.autorization.ResponseUserInfoModel
+import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.network.mainPage.ResponseMainPage
 import toledo24.pro.data.room.user.UserEntity
 
@@ -38,8 +39,18 @@ interface RetrofitService {
     ): ResponseUserInfoModel
 
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
+    @FormUrlEncoded
+    @POST("multi/getPageCatalog")
+    suspend fun getCatalogList(
+        @Field("category") category: String,
+        @Field("page") page: String
+    ): ResponseCatalogListModel
+
+    @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @POST("checkTokenUser")
     suspend fun checkTokenUser(@Body userEntity: UserEntity): ResponseCheckTokenUser
+
+
 
     companion object {
         var retrofitService: RetrofitService? = null

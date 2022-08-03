@@ -59,9 +59,9 @@ class SubSubSubSubCatalogFragment: Fragment() {
                 }
             })
 
-        binding.mainMenu.setOnClickListener{
-            findNavController().navigate(R.id.action_subSubSubSubCatalogFragment_to_item_catalog)
-        }
+//        binding.mainMenu.setOnClickListener{
+//            findNavController().navigate(R.id.action_subSubSubSubCatalogFragment_to_item_catalog)
+//        }
 
 
         return binding.root

@@ -5,25 +5,11 @@ import org.koin.dsl.module
 import toledo24.pro.presentation.autorization.AutorizationCodeViewModel
 import toledo24.pro.presentation.autorization.AutorizationViewModel
 import toledo24.pro.presentation.catalog.CatalogFragmentViewModel
+import toledo24.pro.presentation.catalog.CatalogProductsViewModel
 import toledo24.pro.presentation.home.NavigationViewModel
 import toledo24.pro.presentation.welcome.WelcomeViewModel
 
 val appModule = module {
-
-//    viewModel {
-//        CatalogFragmentViewModel(
-//            getCategoriesUseCase = get(),
-//            clickCategoriesUseCase = get()
-//        )
-//    }
-//
-//    viewModel {
-//        WelcomeViewModel(checkingPhoneUserUseCase = get())
-//    }
-//
-//    viewModel {
-//        NavigationViewModel()
-//    }
 
     viewModel {
         AutorizationViewModel(checkingPhoneUserUseCase = get())
@@ -45,6 +31,12 @@ val appModule = module {
         CatalogFragmentViewModel(
             getCategoriesUseCase = get(),
             showCategoriesUseCase = get(),
+        )
+    }
+
+    viewModel{
+        CatalogProductsViewModel(
+            getProductListUseCase = get(),
         )
     }
 

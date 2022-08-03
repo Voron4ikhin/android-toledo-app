@@ -20,6 +20,9 @@ class CatalogFragmentViewModel(
     private val _stateClickItem = MutableStateFlow<String>("")
     val stateClickItem = _stateClickItem.asStateFlow()
 
+    private val _countCategories =  MutableSharedFlow<Int>()
+    val countCategories = _countCategories.asSharedFlow()
+
     init {
         viewModelScope.launch {
             val catalog = getCategoriesUseCase.execute();
@@ -34,6 +37,12 @@ class CatalogFragmentViewModel(
         viewModelScope.launch {
             _stateClickItem.emit(item)
             _categoriesList.emit(showCategoriesUseCase.getListCategories(item))
+        }
+    }
+
+    fun getCountCategoriesList(item: String){
+        viewModelScope.launch {
+            _countCategories.emit(showCategoriesUseCase.getListCategories(item).size)
         }
     }
 

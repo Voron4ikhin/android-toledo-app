@@ -37,9 +37,6 @@
         <action
             android:id="@+id/action_item_subcatalog_to_subSubCatalogFragment"
             app:destination="@id/subSubCatalogFragment" />
-        <action
-            android:id="@+id/action_item_subcatalog_to_item_catalog"
-            app:destination="@id/item_catalog" />
     </fragment>
     <fragment
         android:id="@+id/subSubCatalogFragment"
@@ -49,9 +46,6 @@
         <action
             android:id="@+id/action_subSubCatalogFragment_to_subSubSubCatalogFragment"
             app:destination="@id/subSubSubCatalogFragment" />
-        <action
-            android:id="@+id/action_subSubCatalogFragment_to_item_catalog"
-            app:destination="@id/item_catalog" />
     </fragment>
     <fragment
         android:id="@+id/subSubSubCatalogFragment"
@@ -61,17 +55,15 @@
         <action
             android:id="@+id/action_subSubSubCatalogFragment_to_subSubSubSubCatalogFragment"
             app:destination="@id/subSubSubSubCatalogFragment" />
-        <action
-            android:id="@+id/action_subSubSubCatalogFragment_to_item_catalog"
-            app:destination="@id/item_catalog" />
     </fragment>
     <fragment
         android:id="@+id/subSubSubSubCatalogFragment"
         android:name="toledo24.pro.presentation.catalog.SubSubSubSubCatalogFragment"
         android:label="fragment_sub_sub_sub_sub_catalog"
-        tools:layout="@layout/fragment_sub_sub_sub_sub_catalog" >
-        <action
-            android:id="@+id/action_subSubSubSubCatalogFragment_to_item_catalog"
-            app:destination="@id/item_catalog" />
-    </fragment>
+        tools:layout="@layout/fragment_sub_sub_sub_sub_catalog" />
+    <fragment
+        android:id="@+id/catalogProductsFragment"
+        android:name="toledo24.pro.presentation.catalog.CatalogProductsFragment"
+        android:label="fragment_catalog_products"
+        tools:layout="@layout/fragment_catalog_products" />
 </navigation>

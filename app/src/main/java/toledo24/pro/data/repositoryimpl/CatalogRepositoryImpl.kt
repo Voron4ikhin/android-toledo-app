@@ -4,6 +4,7 @@ import toledo24.pro.data.network.ResponseCatalogModel
 import toledo24.pro.domain.repository.CatalogRepository
 import toledo24.pro.data.network.RetrofitService
 import toledo24.pro.data.network.RetrofitService.Companion.retrofitService
+import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.room.RoomService
 import toledo24.pro.data.room.catalog.CatalogEntity
 
@@ -20,5 +21,8 @@ class CatalogRepositoryImpl(retrofitService: RetrofitService): CatalogRepository
     override suspend fun insertCatalogRoom( catalogEntityList: List<CatalogEntity>){
         RoomService.INSTANCE?.catalogDao()!!.insertCatalog(catalogEntityList)
     }
+
+    override suspend fun getProductList(category : String, page : String):
+            ResponseCatalogListModel = retrofitService!!.getCatalogList(category, page)
 
 }

@@ -41,6 +41,7 @@ class SubSubCatalogFragment: Fragment() {
         lifecycleScope.launchWhenStarted {
             if (ID != null) {
                 viewModel.getRoomItemsList(ID)
+                Log.d("tag", "Получили ID ${ID}")
             }
             viewModel.categoriesList.collect {
                 adapter.deleteAll()
@@ -57,7 +58,18 @@ class SubSubCatalogFragment: Fragment() {
                     bundle.putString("ID", adapter.getItem(position).PRODUCT_ID)
                     bundle.putString("NAME", adapter.getItem(position).NAME)
                     bundle.putString("MAIN", MAIN)
-                    findNavController().navigate(R.id.action_subSubCatalogFragment_to_subSubSubCatalogFragment, bundle)
+                    bundle.putString("CODE", adapter.getItem(position).CODE)
+                    lifecycleScope.launchWhenStarted {
+                        viewModel.getCountCategoriesList(adapter.getItem(position).PRODUCT_ID)
+                        viewModel.countCategories.collect {
+                            if (it == 0){
+                                findNavController().navigate(R.id.catalogProductsFragment, bundle)
+                            }
+                            else{
+                                findNavController().navigate(R.id.subSubSubCatalogFragment, bundle)
+                            }
+                        }
+                    }
 
                 }
             })
@@ -66,9 +78,9 @@ class SubSubCatalogFragment: Fragment() {
             
         }
 
-        binding.mainMenu.setOnClickListener{
-            findNavController().navigate(R.id.action_subSubCatalogFragment_to_item_catalog)
-        }
+//        binding.mainMenu.setOnClickListener{
+//            findNavController().navigate(R.id.action_subSubCatalogFragment_to_item_catalog)
+//        }
 
 
 

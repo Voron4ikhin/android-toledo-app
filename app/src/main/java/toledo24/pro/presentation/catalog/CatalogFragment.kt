@@ -46,6 +46,7 @@ class CatalogFragment : Fragment() {
             object : CatalogAdapter.ClickListener {
                 override fun onItemClick(v: View, position: Int) {
                     val bundle = Bundle()
+                    Log.d("tag", "${adapter.getItem(position).NAME}")
                     bundle.putString("ID", adapter.getItem(position).PRODUCT_ID)
                     bundle.putString("NAME", adapter.getItem(position).NAME)
                     findNavController().navigate(R.id.action_item_catalog_to_item_subcatalog, bundle)

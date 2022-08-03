@@ -2,6 +2,7 @@ package toledo24.pro.domain.repository
 
 import toledo24.pro.data.network.CategoryListModel
 import toledo24.pro.data.network.ResponseCatalogModel
+import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.room.catalog.CatalogEntity
 
 interface CatalogRepository {
@@ -14,6 +15,9 @@ interface CatalogRepository {
 
     //Добавляем информацию о пользователе в room
     suspend fun insertCatalogRoom( catalogEntityList: List<CatalogEntity>)
+
+    //Получаем список товаров
+    suspend fun getProductList(category : String, page : String): ResponseCatalogListModel //что то надо вернуть
 
 
 
