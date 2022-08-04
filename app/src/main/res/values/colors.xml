@@ -10,4 +10,5 @@
     <color name="red_light">#D80000</color>
     <color name="red_dark">#950202</color>
     <color name="light_gray">#F1F1F1</color>
+    <color name="hard_light_gray">#F8F8F8</color>
 </resources>

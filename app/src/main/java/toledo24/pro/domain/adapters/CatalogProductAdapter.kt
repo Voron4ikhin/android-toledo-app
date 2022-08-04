@@ -1,5 +1,6 @@
 package toledo24.pro.domain.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.catalog.CatalogItemModel
-import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.databinding.ItemWithTextBinding
 
 class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.CatalogHolder>(){
@@ -17,7 +17,8 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
 
     // adapter (шаблон по которому будет происходить заполнение данных)
     inner class CatalogHolder(item: View) : RecyclerView.ViewHolder(item), View.OnClickListener {
-        val binding = ItemWithTextBinding.bind(item)
+
+        private val binding = ItemWithTextBinding.bind(item)
 
         init {
             if (clickListener != null) {
@@ -48,7 +49,16 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_with_text, parent, false)
-        return CatalogHolder(view)
+        val holder = CatalogHolder(view)
+
+//        holder.itemView.setOnClickListener{
+//            val position = holder.adapterPosition
+//            val model = catalogList[position]
+//
+//            model.
+//        }
+
+        return holder
     }
 
     /**
@@ -82,6 +92,7 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
     interface ClickListener {
         fun onItemClick(v: View, position: Int)
     }
+
 
 
 }

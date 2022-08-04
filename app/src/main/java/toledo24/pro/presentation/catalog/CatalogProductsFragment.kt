@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.coroutines.flow.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import toledo24.pro.R
 import toledo24.pro.databinding.FragmentCatalogProductsBinding
-import toledo24.pro.domain.adapters.CatalogAdapter
+import toledo24.pro.databinding.ItemWithTextBinding
 import toledo24.pro.domain.adapters.CatalogProductAdapter
 
 
@@ -49,16 +47,13 @@ class CatalogProductsFragment : Fragment() {
 
         }
 
-//        adapter.setOnItemClickListener(
-//            object : CatalogProductAdapter.ClickListener {
-//                override fun onItemClick(v: View, position: Int) {
-//                    val bundle = Bundle()
-//                    bundle.putString("ID", adapter.getItem(position).PRODUCT_ID)
-//                    bundle.putString("NAME", adapter.getItem(position).NAME)
-//                    findNavController().navigate(R.id.action_item_catalog_to_item_subcatalog, bundle)
-//
-//                }
-//            })
+        adapter.setOnItemClickListener(
+            object : CatalogProductAdapter.ClickListener {
+                override fun onItemClick(v: View, position: Int) {
+                    Log.d("tag", "Мы нажали на что-то ${adapter.getItem(position).NAME}")
+
+                }
+            })
 
         return binding.root
     }

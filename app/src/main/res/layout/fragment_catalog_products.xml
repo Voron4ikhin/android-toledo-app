@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E8E8">
+    android:background="@color/hard_light_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +27,14 @@
                 android:text="Каталог товаров" />
 
         </com.google.android.material.appbar.MaterialToolbar>
+
+        <TextView
+            android:id="@+id/countProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="111 товара"
+            android:gravity="center"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productList"
