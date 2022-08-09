@@ -1,10 +1,10 @@
 package toledo24.pro.domain.adapters
 
-import android.util.Log
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
@@ -42,7 +42,6 @@ class CatalogProductAdapter(viewModel: CatalogProductsViewModel) : RecyclerView.
 
 
             cardClick.setOnClickListener {
-                Log.d("tag", "Нажали на корзину ${catalogModel.CODE} + ${catalogModel.CATEGORY_NAME}")
                 vm.addToBasket(catalogModel.PRODUCT_ID, catalogModel.RATE)
             }
         }

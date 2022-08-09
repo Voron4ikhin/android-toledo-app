@@ -4,17 +4,21 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import toledo24.pro.data.room.basket.BasketDao
+import toledo24.pro.data.room.basket.BasketEntity
 import toledo24.pro.data.room.catalog.CatalogDao
 import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.data.room.user.UserDao
 import toledo24.pro.data.room.user.UserEntity
 
-@Database(entities = [UserEntity::class, CatalogEntity::class], version = 1)
+@Database(entities = [UserEntity::class, CatalogEntity::class, BasketEntity::class], version = 1)
 abstract class RoomService: RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
     abstract fun catalogDao(): CatalogDao
+
+    abstract fun basketDao(): BasketDao
 
     companion object {
         var INSTANCE: RoomService? = null

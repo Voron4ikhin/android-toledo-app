@@ -38,6 +38,7 @@ val appModule = module {
     viewModel{
         CatalogProductsViewModel(
             getProductListUseCase = get(),
+            addToBasketUseCase = get(),
         )
     }
 

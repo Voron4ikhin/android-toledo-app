@@ -7,8 +7,10 @@ import toledo24.pro.data.repositoryimpl.UserRepositoryImpl
 import toledo24.pro.domain.repository.CatalogRepository
 import toledo24.pro.domain.repository.UserRepository
 import toledo24.pro.data.network.RetrofitService
+import toledo24.pro.data.repositoryimpl.CardRepositoryImpl
 import toledo24.pro.data.repositoryimpl.MainPageRepositoryImpl
 import toledo24.pro.data.room.RoomService
+import toledo24.pro.domain.repository.CardRepository
 import toledo24.pro.domain.repository.MainPageRepository
 
 
@@ -38,6 +40,12 @@ val dataModule = module {
     single<MainPageRepository> {
         MainPageRepositoryImpl(
             retrofitService = get(),
+        )
+    }
+
+    single<CardRepository> {
+        CardRepositoryImpl(
+            retrofitService = get()
         )
     }
 
