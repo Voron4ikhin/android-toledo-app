@@ -1,5 +1,6 @@
 package toledo24.pro.presentation.catalog
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,6 +22,13 @@ class CatalogProductsViewModel(
             val catalog = getProductListUseCase.execute(category, page);
             _catalogProduct.emit(catalog)
         }
+    }
+
+    fun addToBasket(productId: String, quantity: String){
+        viewModelScope.launch {
+            Log.d("tag", "Нажали на корзину из vm ${productId}")
+        }
+
     }
 
 }

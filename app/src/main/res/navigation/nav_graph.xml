@@ -66,4 +66,9 @@
         android:name="toledo24.pro.presentation.catalog.CatalogProductsFragment"
         android:label="fragment_catalog_products"
         tools:layout="@layout/fragment_catalog_products" />
+    <fragment
+        android:id="@+id/catalogDetailFragment"
+        android:name="toledo24.pro.presentation.catalog.CatalogDetailFragment"
+        android:label="fragment_catalog_detail"
+        tools:layout="@layout/fragment_catalog_detail" />
 </navigation>

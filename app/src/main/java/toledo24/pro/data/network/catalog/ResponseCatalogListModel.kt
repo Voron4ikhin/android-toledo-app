@@ -38,6 +38,12 @@ data class CatalogItemModel(
     val PRICE: String,
     @SerializedName("NORMAL_PRICE")
     val NORMAL_PRICE: String,
+    @SerializedName("SALE")
+    val SALE: String,
+    @SerializedName("NORMAL_SALE")
+    val NORMAL_SALE: String,
+    @SerializedName("DIFF")
+    val DIFF: String,
     @SerializedName("DETAIL_PICTURE")
     val DETAIL_PICTURE: String,
     @SerializedName("QUANTITY")

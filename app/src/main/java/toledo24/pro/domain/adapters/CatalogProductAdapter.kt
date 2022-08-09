@@ -4,27 +4,24 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.catalog.CatalogItemModel
 import toledo24.pro.databinding.ItemWithTextBinding
+import toledo24.pro.presentation.catalog.CatalogProductsViewModel
 
-class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.CatalogHolder>(){
+
+class CatalogProductAdapter(viewModel: CatalogProductsViewModel) : RecyclerView.Adapter<CatalogProductAdapter.CatalogProductHolder>(){
 
     private val catalogList = ArrayList<CatalogItemModel>()
-    private var clickListener: ClickListener? = null
+    private lateinit var clickListener: OnItemClickListener
+    private var vm: CatalogProductsViewModel = viewModel
 
-    // adapter (шаблон по которому будет происходить заполнение данных)
-    inner class CatalogHolder(item: View) : RecyclerView.ViewHolder(item), View.OnClickListener {
+    inner class CatalogProductHolder(itemView: View, listener : OnItemClickListener) : RecyclerView.ViewHolder(itemView){
 
-        private val binding = ItemWithTextBinding.bind(item)
-
-        init {
-            if (clickListener != null) {
-                itemView.setOnClickListener(this)
-            }
-        }
+        private val binding = ItemWithTextBinding.bind(itemView)
 
         fun bind(catalogModel: CatalogItemModel) = with(binding) {
             description.text = catalogModel.NAME
@@ -33,12 +30,32 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
                 .placeholder(R.drawable.welcome_logo)
                 .error(R.drawable.welcome_logo)
                 .into(binding.imagePreview)
+            if(catalogModel.SALE !== null){
+                cardPrice.text = catalogModel.SALE
+                oldPrice.text = catalogModel.PRICE
+            }
+            else{
+                cardPrice.text = catalogModel.PRICE
+            }
+
+            codeProduct.text = "Код: " +  catalogModel.CODE_PRODUCT
+
+
+            cardClick.setOnClickListener {
+                Log.d("tag", "Нажали на корзину ${catalogModel.CODE} + ${catalogModel.CATEGORY_NAME}")
+                vm.addToBasket(catalogModel.PRODUCT_ID, catalogModel.RATE)
+            }
         }
 
-        override fun onClick(view: View?) {
-            if (view != null) {
-                clickListener?.onItemClick(view,adapterPosition)
-            }
+    }
+
+
+
+
+    fun  fireItemClicked(itemView: View, position: Int, item: CatalogItemModel){
+
+        if (clickListener != null) {
+            clickListener.onItemClick(position, item);
         }
 
     }
@@ -47,16 +64,16 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
      * Создается элемент списка
      * надувает view и загружает его в память
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogProductHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_with_text, parent, false)
-        val holder = CatalogHolder(view)
+        val holder = CatalogProductHolder(view, clickListener)
 
-//        holder.itemView.setOnClickListener{
-//            val position = holder.adapterPosition
-//            val model = catalogList[position]
-//
-//            model.
-//        }
+        holder.itemView.setOnClickListener { v: View ->
+            val position = holder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                fireItemClicked(v, position, catalogList[position])
+            }
+        }
 
         return holder
     }
@@ -64,7 +81,7 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
     /**
      * Заполняется элемент списка
      */
-    override fun onBindViewHolder(holder: CatalogHolder, position: Int) {
+    override fun onBindViewHolder(holder: CatalogProductHolder, position: Int) {
         holder.bind(catalogList[position])
     }
 
@@ -85,12 +102,13 @@ class CatalogProductAdapter : RecyclerView.Adapter<CatalogProductAdapter.Catalog
         catalogList.clear()
     }
 
-    fun setOnItemClickListener(clickListener: CatalogProductAdapter.ClickListener) {
-        this.clickListener = clickListener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        clickListener = listener
     }
 
-    interface ClickListener {
-        fun onItemClick(v: View, position: Int)
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int, item : CatalogItemModel)
     }
 
 

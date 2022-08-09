@@ -5,12 +5,15 @@ import toledo24.pro.domain.repository.CatalogRepository
 import toledo24.pro.data.network.RetrofitService
 import toledo24.pro.data.network.RetrofitService.Companion.retrofitService
 import toledo24.pro.data.network.catalog.ResponseCatalogListModel
+import toledo24.pro.data.network.catalog.ResponseDetailProductModel
 import toledo24.pro.data.room.RoomService
 import toledo24.pro.data.room.catalog.CatalogEntity
 
 class CatalogRepositoryImpl(retrofitService: RetrofitService): CatalogRepository {
 
     override suspend fun getCatalog(): ResponseCatalogModel = retrofitService!!.getCatalog()
+
+    override suspend fun getDetailProduct(name :String, category :String): ResponseDetailProductModel = retrofitService!!.getDetailProduct(name, category)
 
     override suspend fun getCatalogRoom(IBLOCK_SECTION_ID: String?): List<CatalogEntity> {
         if(IBLOCK_SECTION_ID == "")
