@@ -8,6 +8,8 @@ interface CardRepository {
     //Обноволяем корзину и возвращаем ее по api
     suspend fun updateBasket(USER_ID: String, productId: String, quantity: Int) : ResponseCardModel
 
+    suspend fun getBasket(USER_ID: String) : ResponseCardModel
+
     suspend fun updateBasketRoom(basketEntityList: List<BasketEntity>)
 
     suspend fun getBasketRoom() : List<BasketEntity>

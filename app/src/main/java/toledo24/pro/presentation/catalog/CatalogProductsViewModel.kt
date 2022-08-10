@@ -23,6 +23,8 @@ class CatalogProductsViewModel(
     private val _basket = MutableSharedFlow<Map<String, BasketModel>>()
     val basket = _basket.asSharedFlow()
 
+    val basketCount = MutableLiveData<Int>()
+    val elemCount = MutableLiveData<Int>()
     val toast = MutableLiveData<Boolean>()
 
 
@@ -35,19 +37,19 @@ class CatalogProductsViewModel(
 
     fun addToBasket(productId: String, quantity: String){
         viewModelScope.launch {
-            val getBasketApi = addToBasketUseCase.setNewDataApi(productId, quantity.toInt())
-            //Очищаем корзину
-            addToBasketUseCase.clearBasket()
-            //Записываем в Room новую корзину
-            addToBasketUseCase.setRoomBasket(getBasketApi)
-            val getBasketRoom = addToBasketUseCase.getRoomBasket()
+            val getBasketApi = addToBasketUseCase.setNewDataApi(productId, quantity.toInt())    // Корзина сервера
+            val getBasketRoom = addToBasketUseCase.getRoomBasket()      // Корзина в Room
+            var basketSize : Int = 0        // Размер корзины в Room
+
+            addToBasketUseCase.clearBasket()    // Очищаем корзину
+            addToBasketUseCase.setRoomBasket(getBasketApi)  // Записываем в Room новую корзину
+
             getBasketRoom.forEach{
-                Log.d("tag", "${it.PRODUCT_ID} - ${it.QUANTITY}")
+                basketSize += it.QUANTITY.toInt()
             }
 
-            toast.value = true
-            //addToBasketUseCase.setRoomBasket(getBasketApi)
-            //val getBasketRoom =
+            basketCount.value = basketSize      // Переменная LiveData для показа кол-ва элементов в корзине
+            toast.value = true      // Переменная LiveData для отображения toast при добавлении товара в корзину
         }
 
     }

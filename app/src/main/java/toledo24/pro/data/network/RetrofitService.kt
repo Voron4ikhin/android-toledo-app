@@ -58,6 +58,13 @@ interface RetrofitService {
     ): ResponseCardModel
 
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
+    @FormUrlEncoded
+    @POST("multi/cart")
+    suspend fun getBasket(
+        @Field("USER_ID") USER_ID: String,
+    ): ResponseCardModel
+
+    @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @GET("multi/getProduct")
     suspend fun getDetailProduct(
         @Query("name") name: String,

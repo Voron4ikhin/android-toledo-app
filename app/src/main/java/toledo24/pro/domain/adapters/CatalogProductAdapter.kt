@@ -1,6 +1,7 @@
 package toledo24.pro.domain.adapters
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.catalog.CatalogItemModel
 import toledo24.pro.databinding.ItemWithTextBinding
+import toledo24.pro.presentation.MainViewModel
 import toledo24.pro.presentation.catalog.CatalogProductsViewModel
 
 
@@ -47,9 +49,6 @@ class CatalogProductAdapter(viewModel: CatalogProductsViewModel) : RecyclerView.
         }
 
     }
-
-
-
 
     fun  fireItemClicked(itemView: View, position: Int, item: CatalogItemModel){
 
@@ -105,11 +104,8 @@ class CatalogProductAdapter(viewModel: CatalogProductsViewModel) : RecyclerView.
         clickListener = listener
     }
 
-
     interface OnItemClickListener {
         fun onItemClick(position: Int, item : CatalogItemModel)
     }
-
-
 
 }

@@ -86,8 +86,37 @@
                     android:id="@+id/cardClick"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
                     android:src="@drawable/ic_item_cart"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/basketCountLL"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/oval"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:visibility="invisible">
+
+
+                    <TextView
+                        android:id="@+id/basketCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

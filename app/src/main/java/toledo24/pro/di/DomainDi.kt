@@ -35,7 +35,7 @@ val domainModule = module {
     }
 
     factory<GetMainPageInfoUseCase> {
-        GetMainPageInfoUseCase(mainPageRepository = get())
+        GetMainPageInfoUseCase(mainPageRepository = get(), cardRepository = get())
     }
 
     factory<GetProductListUseCase> {

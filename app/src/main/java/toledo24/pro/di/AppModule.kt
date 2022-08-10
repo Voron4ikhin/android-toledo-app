@@ -2,6 +2,7 @@ package toledo24.pro.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import toledo24.pro.presentation.MainViewModel
 import toledo24.pro.presentation.autorization.AutorizationCodeViewModel
 import toledo24.pro.presentation.autorization.AutorizationViewModel
 import toledo24.pro.presentation.catalog.CatalogDetailFragmentViewModel
@@ -45,6 +46,13 @@ val appModule = module {
     viewModel{
         CatalogDetailFragmentViewModel(
             getDetailProductUseCase = get()
+        )
+    }
+
+    viewModel{
+        MainViewModel(
+            getMainPageInfoUseCase = get(),
+            userRepository = get()
         )
     }
 

@@ -12,6 +12,10 @@ class CardRepositoryImpl(retrofitService: RetrofitService): CardRepository {
     override suspend fun updateBasket(USER_ID: String, productId: String, quantity: Int)
     : ResponseCardModel = retrofitService!!.updateCard(USER_ID, productId, quantity)
 
+    override suspend fun getBasket(USER_ID: String)
+    : ResponseCardModel = retrofitService!!.getBasket(USER_ID)
+
+
     override suspend fun updateBasketRoom(basketEntityList: List<BasketEntity>) {
         RoomService.INSTANCE?.basketDao()!!.insertBasket(basketEntityList)
     }
