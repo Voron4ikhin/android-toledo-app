@@ -15,7 +15,7 @@ data class DetailProductModel(
     @SerializedName("ID")
     val ID: String,
     @SerializedName("NAME")
-    val NAME: String,
+    val NAME: String?=null,
     @SerializedName("PREVIEW_TEXT")
     val PREVIEW_TEXT: String,
     @SerializedName("DETAIL_TEXT")
@@ -28,10 +28,18 @@ data class DetailProductModel(
     val IBLOCK_SECTION_ID: String,
     @SerializedName("PRODUCT_ID")
     val PRODUCT_ID: String,
+    @SerializedName("DETAIL_PICTURE")
+    val DETAIL_PICTURE: String,
     @SerializedName("IMAGE")
     val IMAGE: String,
     @SerializedName("PRICE")
     val PRICE: String,
+    @SerializedName("SALE")
+    val SALE: String? = null,
+    @SerializedName("NORMAL_SALE")
+    val NORMAL_SALE: String? = null,
+    @SerializedName("DIFF")
+    val DIFF: String? = null,
     @SerializedName("AMOUNT")
     val AMOUNT: String,
     @SerializedName("PROPERTIES")

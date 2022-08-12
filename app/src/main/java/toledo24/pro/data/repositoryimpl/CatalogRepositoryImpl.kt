@@ -4,6 +4,7 @@ import toledo24.pro.data.network.ResponseCatalogModel
 import toledo24.pro.domain.repository.CatalogRepository
 import toledo24.pro.data.network.RetrofitService
 import toledo24.pro.data.network.RetrofitService.Companion.retrofitService
+import toledo24.pro.data.network.catalog.ResponseAnalogRelatedModel
 import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.network.catalog.ResponseDetailProductModel
 import toledo24.pro.data.room.RoomService
@@ -27,5 +28,8 @@ class CatalogRepositoryImpl(retrofitService: RetrofitService): CatalogRepository
 
     override suspend fun getProductList(category : String, page : String):
             ResponseCatalogListModel = retrofitService!!.getCatalogList(category, page)
+
+    override suspend fun getAnalogsRelated(xmlId: String):
+            ResponseAnalogRelatedModel = retrofitService!!.getAnalogsRelated(xmlId)
 
 }

@@ -45,7 +45,8 @@ val appModule = module {
 
     viewModel{
         CatalogDetailFragmentViewModel(
-            getDetailProductUseCase = get()
+            getDetailProductUseCase = get(),
+            getAnalogsRelatedUseCase = get()
         )
     }
 

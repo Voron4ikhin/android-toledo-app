@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -36,7 +37,7 @@ class CatalogProductsFragment : Fragment(), Badge {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentCatalogProductsBinding.inflate(inflater)
@@ -70,11 +71,23 @@ class CatalogProductsFragment : Fragment(), Badge {
         adapter.setOnItemClickListener(
             object : CatalogProductAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int, item: CatalogItemModel) {
+//                    val fragment = CatalogDetailFragment()
+//
+//                    parentFragmentManager.commit {
+//                        setCustomAnimations(
+//                            enter = R.anim.slide_in,
+//                            exit = R.anim.fade_out,
+//                            popEnter = R.anim.fade_in,
+//                            popExit = R.anim.slide_out
+//                        )
+//                        replace(R.id.fragment_container, fragment)
+//                        addToBackStack(null)
                     val bundle = Bundle()
                     Log.d("tag", "${item.NAME}")
                     bundle.putString("NAME", adapter.getItem(position).CODE)
                     bundle.putString("CATEGORY", category)
-                    findNavController().navigate(R.id.catalogDetailFragment, bundle)
+                    findNavController().navigate(R.id.action_catalogProductsFragment_to_catalogDetailFragment, bundle)
+
                 }
 
             })
@@ -96,4 +109,5 @@ class CatalogProductsFragment : Fragment(), Badge {
 
 
 }
+
 

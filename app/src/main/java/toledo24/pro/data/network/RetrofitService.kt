@@ -9,6 +9,7 @@ import retrofit2.http.*
 import toledo24.pro.data.network.autorization.ResponseGetSmsModel
 import toledo24.pro.data.network.autorization.ResponseUserInfoModel
 import toledo24.pro.data.network.basket.ResponseCardModel
+import toledo24.pro.data.network.catalog.ResponseAnalogRelatedModel
 import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.network.catalog.ResponseDetailProductModel
 import toledo24.pro.data.network.mainPage.ResponseMainPage
@@ -47,6 +48,14 @@ interface RetrofitService {
         @Field("category") category: String,
         @Field("page") page: String
     ): ResponseCatalogListModel
+
+    @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
+    @FormUrlEncoded
+    @POST("multi/getAnalogsRelated")
+    suspend fun getAnalogsRelated(
+        @Field("xmlId") xmlId: String,
+    ): ResponseAnalogRelatedModel
+
 
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @FormUrlEncoded

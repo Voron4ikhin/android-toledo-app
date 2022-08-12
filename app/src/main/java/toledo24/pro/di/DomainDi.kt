@@ -2,12 +2,9 @@ package toledo24.pro.di
 
 import org.koin.dsl.module
 import toledo24.pro.domain.usecase.autorization.CheckingCodeUserUseCase
-import toledo24.pro.domain.usecase.catalog.GetCategoriesUseCase
 import toledo24.pro.domain.usecase.autorization.CheckingPhoneUserUseCase
 import toledo24.pro.domain.usecase.basket.AddToBasketUseCase
-import toledo24.pro.domain.usecase.catalog.GetDetailProductUseCase
-import toledo24.pro.domain.usecase.catalog.GetProductListUseCase
-import toledo24.pro.domain.usecase.catalog.ShowCategoriesUseCase
+import toledo24.pro.domain.usecase.catalog.*
 import toledo24.pro.domain.usecase.main.GetMainPageInfoUseCase
 import toledo24.pro.domain.usecase.welcome.CheckingUserInfoRoomUseCase
 
@@ -48,6 +45,10 @@ val domainModule = module {
 
     factory<AddToBasketUseCase> {
         AddToBasketUseCase(cardRepository = get(), userRepository = get())
+    }
+
+    factory<GetAnalogsRelatedUseCase>{
+        GetAnalogsRelatedUseCase(catalogRepository = get())
     }
 
 }

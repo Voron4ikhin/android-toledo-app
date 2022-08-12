@@ -65,7 +65,12 @@
         android:id="@+id/catalogProductsFragment"
         android:name="toledo24.pro.presentation.catalog.CatalogProductsFragment"
         android:label="fragment_catalog_products"
-        tools:layout="@layout/fragment_catalog_products" />
+        tools:layout="@layout/fragment_catalog_products" >
+        <action
+            android:id="@+id/action_catalogProductsFragment_to_catalogDetailFragment"
+            app:destination="@id/catalogDetailFragment"
+            />
+    </fragment>
     <fragment
         android:id="@+id/catalogDetailFragment"
         android:name="toledo24.pro.presentation.catalog.CatalogDetailFragment"

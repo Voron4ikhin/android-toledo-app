@@ -11,4 +11,8 @@
     <color name="red_dark">#950202</color>
     <color name="light_gray">#F1F1F1</color>
     <color name="hard_light_gray">#F8F8F8</color>
+    <color name="toledo_red">#E3000F</color>
+    <color name="toledo_grey_light">#F6F6F6</color>
+    <color name="toledo_grey">#C1C1C1</color>
+    <color name="toledo_orange">#fadb5f</color>
 </resources>
