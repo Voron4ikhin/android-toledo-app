@@ -17,6 +17,8 @@ class MainViewModel(
 
     val badgeCount = MutableLiveData<Int>()
 
+    val nameFragment = MutableLiveData<String>()
+
     fun updateBadgeCount(){
         viewModelScope.launch {
             val USER_ID : String = userRepository.getUserRoom().userId

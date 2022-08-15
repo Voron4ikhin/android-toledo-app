@@ -1,18 +1,24 @@
 package toledo24.pro.presentation.catalog
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.forEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import toledo24.pro.R
 import toledo24.pro.databinding.FragmentCatalogDetailBinding
 import toledo24.pro.domain.adapters.AnalogRelatedAdapter
 import toledo24.pro.domain.adapters.CatalogAdapter
@@ -31,7 +37,9 @@ class CatalogDetailFragment : Fragment() {
     ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentCatalogDetailBinding.inflate(inflater)
-
+        ViewCompat.setTransitionName(binding.productImage, "detailImage")
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(R.transition.shared_image)
 
         val NAME = requireArguments().getString("NAME")
         val CATEGORY = requireArguments().getString("CATEGORY")

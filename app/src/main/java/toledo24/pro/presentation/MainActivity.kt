@@ -16,7 +16,7 @@ import toledo24.pro.R
 import toledo24.pro.databinding.ActivityMainBinding
 import toledo24.pro.presentation.home.NavigationViewModel
 
-class MainActivity: AppCompatActivity(), Badge{
+class MainActivity: AppCompatActivity(), Badge, FragmentName{
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -28,16 +28,17 @@ class MainActivity: AppCompatActivity(), Badge{
         setContentView(binding.root)
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         binding.navView.setupWithNavController(navController)
-        getSupportActionBar()?.title = null
+        supportActionBar?.title = null
 
         viewModel.updateBadgeCount()        // Обновляем данные через Api и записываем в Room
         listenCountBasket()         // Слушаем LiveData размер корзины
+        //listenNameFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
-        getMenuInflater().inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         searchView.queryHint = "введите название товара"
         return true
     }
@@ -50,6 +51,12 @@ class MainActivity: AppCompatActivity(), Badge{
 
     }
 
+    override fun getFragmentName(name: String){
+        val ss = listenNameFragment()
+        Log.d("tag", "Имя фрагмента - ${ss}")
+
+    }
+
     fun listenCountBasket(){
         viewModel.badgeCount.observe(this){number ->
             if (number == 0) binding.navView.removeBadge(R.id.item_cart)          //удаляем значок если корзина пустая
@@ -57,6 +64,12 @@ class MainActivity: AppCompatActivity(), Badge{
                 binding.navView.getOrCreateBadge(R.id.item_cart).number = number //получаем экземпляр класса badge (значок над корзиной)
             }
         }
+    }
+
+    fun listenNameFragment(){
+        viewModel.nameFragment.observe(this){ name -> {
+            Log.d("tag", "name - ${name}")
+        }}
     }
 
 }

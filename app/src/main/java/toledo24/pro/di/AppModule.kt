@@ -5,6 +5,7 @@ import org.koin.dsl.module
 import toledo24.pro.presentation.MainViewModel
 import toledo24.pro.presentation.autorization.AutorizationCodeViewModel
 import toledo24.pro.presentation.autorization.AutorizationViewModel
+import toledo24.pro.presentation.cart.CardViewModel
 import toledo24.pro.presentation.catalog.CatalogDetailFragmentViewModel
 import toledo24.pro.presentation.catalog.CatalogFragmentViewModel
 import toledo24.pro.presentation.catalog.CatalogProductsViewModel
@@ -54,6 +55,12 @@ val appModule = module {
         MainViewModel(
             getMainPageInfoUseCase = get(),
             userRepository = get()
+        )
+    }
+
+    viewModel{
+        CardViewModel(
+            getCardUseCase = get(),
         )
     }
 

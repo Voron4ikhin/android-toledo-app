@@ -8,7 +8,11 @@
         <entry key="..\:/Users/User/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1965" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/border_line.xml" value="0.1965" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/border_red.xml" value="0.214" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/button_cart_grey.xml" value="0.214" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/button_cart_red.xml" value="0.1965" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/detail_separation_line.xml" value="0.273" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/ic_dots.xml" value="0.214" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/ic_item_cart.xml" value="0.1965" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/ic_item_catalog.xml" value="0.1965" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
@@ -18,6 +22,7 @@
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/oval.xml" value="0.25" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/striking_text.xml" value="0.214" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/striking_text_white.xml" value="0.273" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/underline_grey.xml" value="0.214" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/drawable/welcome_gradient.xml" value="0.1965" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/activity_autorization.xml" value="0.1" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/activity_autorization_code.xml" value="0.19411764705882353" />
@@ -26,7 +31,8 @@
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/banner_item.xml" value="0.5605573419078242" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/best_product_item.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/catalog_item.xml" value="0.5386199794026777" />
-        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_cart.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_cart.xml" value="0.33" />
+        <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_cart_under_order.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog_detail.xml" value="0.3985572587917042" />
         <entry key="..\:/Users/voronchihin.i/Desktop/TOLEDO/app/src/main/res/layout/fragment_catalog_products.xml" value="0.36666666666666664" />

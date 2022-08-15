@@ -8,20 +8,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import toledo24.pro.R
 import toledo24.pro.data.network.catalog.CatalogItemModel
 import toledo24.pro.databinding.FragmentCatalogProductsBinding
-import toledo24.pro.databinding.ItemWithTextBinding
 import toledo24.pro.domain.adapters.CatalogProductAdapter
 import toledo24.pro.presentation.Badge
 import toledo24.pro.presentation.MainActivity
@@ -71,26 +75,15 @@ class CatalogProductsFragment : Fragment(), Badge {
         adapter.setOnItemClickListener(
             object : CatalogProductAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int, item: CatalogItemModel) {
-//                    val fragment = CatalogDetailFragment()
-//
-//                    parentFragmentManager.commit {
-//                        setCustomAnimations(
-//                            enter = R.anim.slide_in,
-//                            exit = R.anim.fade_out,
-//                            popEnter = R.anim.fade_in,
-//                            popExit = R.anim.slide_out
-//                        )
-//                        replace(R.id.fragment_container, fragment)
-//                        addToBackStack(null)
+
                     val bundle = Bundle()
-                    Log.d("tag", "${item.NAME}")
                     bundle.putString("NAME", adapter.getItem(position).CODE)
                     bundle.putString("CATEGORY", category)
                     findNavController().navigate(R.id.action_catalogProductsFragment_to_catalogDetailFragment, bundle)
-
                 }
 
             })
+
 
         return binding.root
     }

@@ -31,7 +31,8 @@
                     android:layout_gravity="center"
                     android:contentDescription="@string/placeholder_text_view"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:transitionName="detailImage" />
 
             </androidx.cardview.widget.CardView>
 

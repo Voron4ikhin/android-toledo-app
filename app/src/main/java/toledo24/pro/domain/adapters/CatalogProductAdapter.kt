@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.catalog.CatalogItemModel
 import toledo24.pro.databinding.ItemWithTextBinding
 import toledo24.pro.presentation.MainViewModel
+import toledo24.pro.presentation.catalog.CatalogDetailFragment
 import toledo24.pro.presentation.catalog.CatalogProductsViewModel
 
 

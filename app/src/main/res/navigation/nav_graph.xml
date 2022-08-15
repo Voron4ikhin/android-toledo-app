@@ -68,8 +68,7 @@
         tools:layout="@layout/fragment_catalog_products" >
         <action
             android:id="@+id/action_catalogProductsFragment_to_catalogDetailFragment"
-            app:destination="@id/catalogDetailFragment"
-            />
+            app:destination="@id/catalogDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalogDetailFragment"
