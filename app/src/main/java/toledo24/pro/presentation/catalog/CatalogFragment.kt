@@ -1,5 +1,6 @@
 package toledo24.pro.presentation.catalog
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,10 +17,13 @@ import toledo24.pro.R
 import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.databinding.FragmentCatalogBinding
 import toledo24.pro.domain.adapters.CatalogAdapter
+import toledo24.pro.presentation.FragmentName
+import toledo24.pro.presentation.MainActivity
 
 
-class CatalogFragment : Fragment() {
+class CatalogFragment : Fragment(), FragmentName {
 
+    lateinit var listener: MainActivity
     private lateinit var binding: FragmentCatalogBinding
     private val viewModel by viewModel<CatalogFragmentViewModel>()
     //адаптер для RV
@@ -54,7 +58,22 @@ class CatalogFragment : Fragment() {
                 }
             })
 
+        viewModel.fragmentName.observe(requireActivity()) { name ->
+            (listener as FragmentName).getFragmentName(name)
+        }
+
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is MainActivity){
+            listener = context
+        }
+    }
+
+    override fun getFragmentName(name: String) {
+        TODO("Not yet implemented")
     }
 
 

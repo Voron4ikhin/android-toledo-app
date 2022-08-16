@@ -1,5 +1,6 @@
 package toledo24.pro.presentation.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,10 +18,13 @@ import toledo24.pro.app.POJO.BestProductItem
 import toledo24.pro.app.POJO.UIModel
 import toledo24.pro.databinding.FragmentMainBinding
 import toledo24.pro.domain.adapters.HomeAdapter
+import toledo24.pro.presentation.FragmentName
+import toledo24.pro.presentation.MainActivity
 import kotlin.reflect.typeOf
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(){
 
+    lateinit var listener: MainActivity
     lateinit var binding: FragmentMainBinding
 
     private val adapter = HomeAdapter()
@@ -61,6 +65,11 @@ class MainFragment : Fragment() {
     ): View? {
 
         binding = FragmentMainBinding.inflate(inflater)
+
+//        viewModel.fragmentName.observe(requireActivity()) { name ->
+//            (listener as FragmentName).getFragmentName(name)
+//        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.bannersList.collect {
                 it.forEach { value ->
@@ -68,7 +77,11 @@ class MainFragment : Fragment() {
                 }
             }
         }
+
         init()
+
+
+
         return binding.root
     }
 
@@ -81,5 +94,16 @@ class MainFragment : Fragment() {
 
     }
 
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is MainActivity){
+            listener = context
+        }
     }
+
+//    override fun getFragmentName(name: String) {
+//        TODO("Not yet implemented")
+//    }
+
+
+}

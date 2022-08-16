@@ -1,6 +1,7 @@
 package toledo24.pro.presentation.catalog
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
@@ -23,11 +24,14 @@ class CatalogFragmentViewModel(
     private val _countCategories =  MutableSharedFlow<Int>()
     val countCategories = _countCategories.asSharedFlow()
 
+    val fragmentName = MutableLiveData<String>()
+
     init {
         viewModelScope.launch {
             val catalog = getCategoriesUseCase.execute();
             getCategoriesUseCase.saveCatalogInRoom(catalog)
             val res = showCategoriesUseCase.getListCategories(_stateClickItem.value)
+            fragmentName.value = "catalog"
             _categoriesList.emit(res)
         }
     }

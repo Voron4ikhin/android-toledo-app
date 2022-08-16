@@ -1,5 +1,6 @@
 package toledo24.pro.presentation
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +18,7 @@ class MainViewModel(
 
     val badgeCount = MutableLiveData<Int>()
 
-    val nameFragment = MutableLiveData<String>()
+    val fragmentName = MutableLiveData<String>()
 
     fun updateBadgeCount(){
         viewModelScope.launch {
@@ -32,6 +33,13 @@ class MainViewModel(
                 basketCount += it.QUANTITY.toInt()
             }
             badgeCount.value = basketCount
+        }
+    }
+
+    fun updateName(){
+        Log.d("tag", "мы заходим в updateName")
+        viewModelScope.launch {
+            fragmentName.value = "КорзинаMain"
         }
     }
 

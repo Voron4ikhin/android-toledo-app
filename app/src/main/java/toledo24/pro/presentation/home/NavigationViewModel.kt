@@ -1,6 +1,7 @@
 package toledo24.pro.presentation.home
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,11 +18,15 @@ class NavigationViewModel(
     private val _bannersList = MutableSharedFlow<List<BannerListModel>>()
     val bannersList = _bannersList.asSharedFlow()
 
+    val fragmentName = MutableLiveData<String>()
+
 init {
     viewModelScope.launch {
         val catalog = getMainPageInfoUseCase.execute();
+        fragmentName.value = "main"
         _bannersList.emit(catalog.bannersList)
     }
+
 }
 
 
