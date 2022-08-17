@@ -62,6 +62,7 @@ val appModule = module {
     viewModel{
         CardViewModel(
             getCardUseCase = get(),
+            addToBasketUseCase = get()
         )
     }
 

@@ -2,7 +2,6 @@ package toledo24.pro.presentation.cart
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +12,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import toledo24.pro.databinding.FragmentCartBinding
 import toledo24.pro.domain.adapters.CardTabAdapter
+import toledo24.pro.presentation.Badge
 import toledo24.pro.presentation.MainActivity
 
-
-const val ARG_OBJECT = "object"
-
-class CartFragment : Fragment() {
+class CartFragment : Fragment(), Badge {
 
     lateinit var listener: MainActivity
     private lateinit var binding: FragmentCartBinding
@@ -34,6 +32,10 @@ class CartFragment : Fragment() {
     private lateinit var InStock: CartInStockFragment
     private lateinit var UnderOrder: CartUnderOrderFragment
 
+    private var countInStock: Int = 0
+    private var countUnderOrder: Int = 0
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,16 +43,6 @@ class CartFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater)
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.cardListInOrder.collect { value ->
-                value.forEach {
-                    Log.d("tag", "${it.QUANTITY_INSTOCK}")
-                }
-
-            }
-        }
-
 
         toolbar = binding.toolbar
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
@@ -69,13 +61,38 @@ class CartFragment : Fragment() {
         viewPagerAdapter?.addFragment(UnderOrder, "Под заказ");
         viewPager.adapter = viewPagerAdapter;
 
+        val badgeDrawableInStock = tabLayout.getTabAt(0)!!.orCreateBadge
+        val badgeDrawableUnderOrder = tabLayout.getTabAt(1)!!.orCreateBadge
+        badgeDrawableInStock.isVisible = false
+        badgeDrawableUnderOrder.isVisible = false
 
 
-        //Ставим badge на табы
-        val badgeDrawable = tabLayout.getTabAt(0)!!.orCreateBadge
-        badgeDrawable.isVisible = true
-        badgeDrawable.number = 5
+        lifecycleScope.launchWhenStarted {
+            viewModel.cardList.collect { value ->
+                value.forEach {
+                    countInStock += it.QUANTITY_INSTOCK
+                    //Ставим badge на табы
+                }
+                if(countInStock != 0) {
+                    badgeDrawableInStock.isVisible = true
+                    badgeDrawableInStock.number = countInStock
+                    (listener as Badge).updateBasketBadge(countUnderOrder + countInStock)
+                }
+            }
+        }
 
+        lifecycleScope.launch {
+            viewModel.cardListInOrder.collect { value ->
+                value.forEach {
+                    countUnderOrder += it.QUANTITY_UNDER_ORDER
+                }
+                if(countUnderOrder != 0){
+                    badgeDrawableUnderOrder.isVisible = true
+                    badgeDrawableUnderOrder.number = countUnderOrder
+                    (listener as Badge).updateBasketBadge(countUnderOrder + countInStock)
+                }
+            }
+        }
 
 
         //Слушаем LiveData и показываем size в bottomNavigation
@@ -95,9 +112,10 @@ class CartFragment : Fragment() {
         }
     }
 
-//
-//    override fun getFragmentName(name: String) {
-//        TODO("Not yet implemented")
-//    }
+    override fun updateBasketBadge(number: Int) {
+        TODO("Not yet implemented")
+    }
+
+
 
 }

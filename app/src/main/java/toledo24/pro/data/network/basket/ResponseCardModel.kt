@@ -51,7 +51,7 @@ data class BasketModel(
     @SerializedName("QUANTITY_INSTOCK")
     val QUANTITY_INSTOCK: Int,
     @SerializedName("QUANTITY_UNDER_ORDER")
-    val QUANTITY_UNDER_ORDER: Int,
+    var QUANTITY_UNDER_ORDER: Int,
     @SerializedName("FINAL_PRICE_INSTOCK")
     val FINAL_PRICE_INSTOCK: Float,
     @SerializedName("FINAL_PRICE_UNDER_ORDER")

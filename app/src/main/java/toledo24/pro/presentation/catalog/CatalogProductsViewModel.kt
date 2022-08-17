@@ -38,11 +38,12 @@ class CatalogProductsViewModel(
     fun addToBasket(productId: String, quantity: String){
         viewModelScope.launch {
             val getBasketApi = addToBasketUseCase.setNewDataApi(productId, quantity.toInt())    // Корзина сервера
-            val getBasketRoom = addToBasketUseCase.getRoomBasket()      // Корзина в Room
             var basketSize : Int = 0        // Размер корзины в Room
 
             addToBasketUseCase.clearBasket()    // Очищаем корзину
             addToBasketUseCase.setRoomBasket(getBasketApi)  // Записываем в Room новую корзину
+            val getBasketRoom = addToBasketUseCase.getRoomBasket()      // Корзина в Room
+
 
             getBasketRoom.forEach{
                 basketSize += it.QUANTITY.toInt()

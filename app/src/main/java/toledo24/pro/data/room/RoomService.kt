@@ -11,7 +11,7 @@ import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.data.room.user.UserDao
 import toledo24.pro.data.room.user.UserEntity
 
-@Database(entities = [UserEntity::class, CatalogEntity::class, BasketEntity::class], version = 2)
+@Database(entities = [UserEntity::class, CatalogEntity::class, BasketEntity::class], version = 1)
 abstract class RoomService: RoomDatabase() {
 
     abstract fun userDao(): UserDao

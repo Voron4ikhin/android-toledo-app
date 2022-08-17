@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import toledo24.pro.databinding.FragmentCartUnderOrderBinding
-import toledo24.pro.domain.adapters.CardAdapter
-import toledo24.pro.presentation.FragmentName
+import toledo24.pro.domain.adapters.CardAdapterUnderOrder
 import toledo24.pro.presentation.MainActivity
 
 class CartUnderOrderFragment: Fragment() {
@@ -21,7 +20,7 @@ class CartUnderOrderFragment: Fragment() {
     private lateinit var binding: FragmentCartUnderOrderBinding
     private val viewModel by viewModel<CardViewModel>()
     //адаптер для RV
-    private val adapterUnderOrder by lazy { CardAdapter() }
+    private val adapterUnderOrder by lazy { CardAdapterUnderOrder() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +54,4 @@ class CartUnderOrderFragment: Fragment() {
             listener = context
         }
     }
-
-
-//    override fun getFragmentName(name: String) {
-//        TODO("Not yet implemented")
-//    }
-
 }

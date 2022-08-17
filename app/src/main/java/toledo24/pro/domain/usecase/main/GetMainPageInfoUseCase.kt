@@ -29,7 +29,9 @@ class GetMainPageInfoUseCase(
         basket.forEach{
             val basketEntity = BasketEntity(
                 it.key.toInt(),
-                it.value.QUANTITY
+                it.value.QUANTITY,
+                it.value.QUANTITY_INSTOCK,
+                it.value.QUANTITY_UNDER_ORDER
             )
             gapArray.add(basketEntity)
         }

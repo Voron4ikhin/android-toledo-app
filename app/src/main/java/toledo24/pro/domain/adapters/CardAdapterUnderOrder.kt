@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.basket.BasketModel
-import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.databinding.ItemCardBinding
 
-class CardAdapter: RecyclerView.Adapter<CardAdapter.CardHolder>() {
+class CardAdapterUnderOrder: RecyclerView.Adapter<CardAdapterUnderOrder.CardHolder>() {
 
     private val cardList = ArrayList<BasketModel>()
     private var clickListener: ClickListener? = null
@@ -35,7 +34,7 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardHolder>() {
                 .into(binding.imageCart)
 
             productCode.text = basketModel.CODE_PRODUCT
-            productCount.text = basketModel.QUANTITY
+            productCount.text = basketModel.QUANTITY_UNDER_ORDER.toString()
             if(basketModel.QUANTITY.toInt() > basketModel.RATE.toInt()) {
                 minusButtonActive.visibility = View.VISIBLE
                 minusButton.visibility = View.GONE
@@ -56,7 +55,7 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardHolder>() {
         return CardHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CardAdapter.CardHolder, position: Int) {
+    override fun onBindViewHolder(holder: CardAdapterUnderOrder.CardHolder, position: Int) {
         holder.bind(cardList[position])
     }
 
@@ -64,7 +63,7 @@ class CardAdapter: RecyclerView.Adapter<CardAdapter.CardHolder>() {
         return cardList.size
     }
 
-    fun getItem(position: Int): BasketModel{
+    fun getItem(position: Int): BasketModel {
         return cardList[position]
     }
 

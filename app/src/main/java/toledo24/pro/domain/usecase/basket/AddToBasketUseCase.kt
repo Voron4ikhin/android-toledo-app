@@ -12,15 +12,31 @@ class AddToBasketUseCase(
     private val userRepository: UserRepository
     )
 {
-    //Обновляем корзину на сервере и в Room
+    //Обновляем корзину на сервере и в Room +
     suspend fun setNewDataApi(productId: String, quantity: Int): Map<String, BasketModel>{
         val USER_ID : String = userRepository.getUserRoom().userId     //
         val basketRoom = getRoomBasket()          //получаем корзину из Room
         var quantityInt : Int = quantity          //пересоздаем quantity для изменения
 
         basketRoom.forEach{
-            if(it.PRODUCT_ID === productId.toInt()) {
+            if(it.PRODUCT_ID == productId.toInt()) {
                 quantityInt += it.QUANTITY.toInt()
+            }
+        }
+        //Возвращаем обновленную корзину с сервера
+        val newBasket = cardRepository.updateBasket(USER_ID, productId, quantityInt).result.BASKET_LIST
+        return newBasket
+    }
+
+    //Обновляем корзину на сервере и в Room -
+    suspend fun setNewDataApiMinus(productId: String, quantity: Int): Map<String, BasketModel>{
+        val USER_ID : String = userRepository.getUserRoom().userId     //
+        val basketRoom = getRoomBasket()          //получаем корзину из Room
+        var quantityInt : Int = quantity          //пересоздаем quantity для изменения
+
+        basketRoom.forEach{
+            if(it.PRODUCT_ID == productId.toInt()) {
+                quantityInt = it.QUANTITY.toInt() - quantityInt
             }
         }
         //Возвращаем обновленную корзину с сервера
@@ -34,7 +50,9 @@ class AddToBasketUseCase(
         basket.forEach{
             val basketEntity = BasketEntity(
                 it.key.toInt(),
-                it.value.QUANTITY
+                it.value.QUANTITY,
+                it.value.QUANTITY_INSTOCK,
+                it.value.QUANTITY_UNDER_ORDER
             )
             gapArray.add(basketEntity)
         }

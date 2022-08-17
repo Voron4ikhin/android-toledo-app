@@ -8,4 +8,6 @@ class BasketEntity (
     @PrimaryKey(autoGenerate = true)
     val PRODUCT_ID: Int,
     val QUANTITY: String,
+    val QUANTITY_IN_STOCK: Int,
+    val QUANTITY_UNDER_ORDER: Int,
 )
