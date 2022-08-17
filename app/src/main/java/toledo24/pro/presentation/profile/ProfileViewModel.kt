@@ -8,12 +8,7 @@ import toledo24.pro.domain.usecase.basket.GetCardUseCase
 
 class ProfileViewModel(): ViewModel() {
 
-    val fragmentName = MutableLiveData<String>()
-
     init {
-        viewModelScope.launch {
-            fragmentName.value = "profile"
-        }
     }
 
 }
