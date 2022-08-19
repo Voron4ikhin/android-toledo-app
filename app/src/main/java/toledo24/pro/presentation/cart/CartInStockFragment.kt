@@ -23,7 +23,7 @@ class CartInStockFragment: Fragment(), Badge {
     private lateinit var binding:FragmentCartInStockBinding
     private val viewModel by viewModel<CardViewModel>()
     //адаптер для RV
-    private val adapterInStock by lazy { CardAdapterInStock(viewModel) }
+    private val adapterInStock by lazy { CardAdapterInStock(requireActivity(), viewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -32,6 +32,7 @@ class CardViewModel(
 
     init {
         viewModelScope.launch {
+            Log.d("tag", "перезагружаем корзину")
             val card = getCardUseCase.execute();
             var cardInStock : List<BasketModel> = emptyList()
             var cardUnderOrder :  List<BasketModel> = emptyList()

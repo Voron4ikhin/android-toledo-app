@@ -13,4 +13,8 @@
     <string name="placeholder_text_view">Text View</string>
     <string name="search">Введите название товара</string>
     <string name="btn_authorization">Войти</string>
+
+    <string name="menu_cart_repost">Поделиться</string>
+    <string name="menu_cart_favorite">Добавить в избранное</string>
+    <string name="menu_cart_delete">Удалить</string>
 </resources>

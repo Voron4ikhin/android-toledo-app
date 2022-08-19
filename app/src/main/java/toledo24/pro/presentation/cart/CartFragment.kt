@@ -68,17 +68,18 @@ class CartFragment : Fragment(), Badge {
 
 
         lifecycleScope.launchWhenStarted {
-            viewModel.cardList.collect { value ->
-                value.forEach {
-                    countInStock += it.QUANTITY_INSTOCK
-                    //Ставим badge на табы
-                }
-                if(countInStock != 0) {
-                    badgeDrawableInStock.isVisible = true
-                    badgeDrawableInStock.number = countInStock
-                    (listener as Badge).updateBasketBadge(countUnderOrder + countInStock)
-                }
-            }
+            updateTabs()
+//            viewModel.cardList.collect { value ->
+//                value.forEach {
+//                    countInStock += it.QUANTITY_INSTOCK
+//                    //Ставим badge на табы
+//                }
+//                if(countInStock != 0) {
+//                    badgeDrawableInStock.isVisible = true
+//                    badgeDrawableInStock.number = countInStock
+//                    (listener as Badge).updateBasketBadge(countUnderOrder + countInStock)
+//                }
+//            }
         }
 
         lifecycleScope.launch {
@@ -101,6 +102,23 @@ class CartFragment : Fragment(), Badge {
 //        }
 
         return binding.root
+    }
+
+    suspend fun updateTabs(){
+        val badgeDrawableInStock = tabLayout.getTabAt(0)!!.orCreateBadge
+        badgeDrawableInStock.isVisible = false
+
+        viewModel.cardList.collect { value ->
+            value.forEach {
+                countInStock += it.QUANTITY_INSTOCK
+                //Ставим badge на табы
+            }
+            if(countInStock != 0) {
+                badgeDrawableInStock.isVisible = true
+                badgeDrawableInStock.number = countInStock
+                (listener as Badge).updateBasketBadge(countUnderOrder + countInStock)
+            }
+        }
     }
 
 

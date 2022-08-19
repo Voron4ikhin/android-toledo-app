@@ -84,8 +84,6 @@ interface RetrofitService {
     @POST("checkTokenUser")
     suspend fun checkTokenUser(@Body userEntity: UserEntity): ResponseCheckTokenUser
 
-
-
     companion object {
         var retrofitService: RetrofitService? = null
         var httpClient = OkHttpClient.Builder().addInterceptor(

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_cart_repost"
+        android:title="@string/menu_cart_repost"
+        />
+
+    <item
+        android:id="@+id/item_cart_favorite"
+        android:title="@string/menu_cart_favorite"
+        />
+
+    <item
+        android:id="@+id/item_cart_delete"
+        android:title="@string/menu_cart_delete"
+        />
+</menu>

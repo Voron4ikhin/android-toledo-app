@@ -1,10 +1,14 @@
 package toledo24.pro.domain.adapters
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.squareup.picasso.Picasso
 import toledo24.pro.R
 import toledo24.pro.data.network.basket.BasketModel
@@ -12,9 +16,10 @@ import toledo24.pro.databinding.ItemCardBinding
 import toledo24.pro.presentation.cart.CardViewModel
 import toledo24.pro.presentation.cart.CartFragment
 
-class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAdapterInStock.CardHolder>(){
 
-    private val cardList = ArrayList<BasketModel>()
+class CardAdapterInStock(val сont: Context, viewModel: CardViewModel): RecyclerView.Adapter<CardAdapterInStock.CardHolder>(){
+
+    private var cardList = ArrayList<BasketModel>()
     private lateinit var listener2: CartFragment
     private var clickListener: ClickListener? = null
     //private val viewModel by viewModel<CardViewModel>()
@@ -23,7 +28,6 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
 
     inner class CardHolder(item: View) : RecyclerView.ViewHolder(item), View.OnClickListener {
         val binding = ItemCardBinding.bind(item)
-
         init {
             if (clickListener != null) {
                 itemView.setOnClickListener(this)
@@ -58,8 +62,7 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
             plusButtonActive.setOnClickListener {
                 viewModel.addToBasket(basketModel.PRODUCT_ID, basketModel.RATE)
                 val counter = (productCount.text as String).toInt() + basketModel.RATE.toInt()
-                Log.d("tag", "${basketModel.AMOUNT}")
-                if(counter > 1) {
+                if(counter > basketModel.RATE.toInt()) {
                     minusButton.visibility = View.GONE
                     minusButtonActive.visibility = View.VISIBLE
                 }
@@ -67,7 +70,6 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
                     plusButton.visibility = View.VISIBLE
                     plusButtonActive.visibility = View.GONE
                     basketModel.QUANTITY_UNDER_ORDER += basketModel.RATE.toInt()
-                    Log.d("tag", "Все в наличии закончено")
                 }
                 else{
                     productCount.text = counter.toString()
@@ -77,17 +79,14 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
 
             minusButtonActive.setOnClickListener {
                 viewModel.subtractFromBasket(basketModel.PRODUCT_ID, basketModel.RATE)
-                Log.d("tag", "QUANTITY_UNDER_ORDER - ${basketModel.QUANTITY_UNDER_ORDER}")
                 if(basketModel.QUANTITY_UNDER_ORDER != 0){
                     basketModel.QUANTITY_UNDER_ORDER -= basketModel.RATE.toInt()
                     plusButton.visibility = View.GONE
                     plusButtonActive.visibility = View.VISIBLE
-                    Log.d("tag", "в if зашли")
                 }
                 else{
-                    Log.d("tag", "в else зашли")
                     val counter = (productCount.text as String).toInt() - basketModel.RATE.toInt()
-                    if(counter == 1) {
+                    if(counter == basketModel.RATE.toInt()) {
                         minusButton.visibility = View.VISIBLE
                         minusButtonActive.visibility = View.GONE
                     }
@@ -98,9 +97,40 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
                     }
                 }
 
-
-
             }
+
+            menuCartItem.setOnClickListener { popupMenu(it, basketModel) }
+
+        }
+
+        private fun popupMenu(v: View, basketModel: BasketModel) {
+            val popupMenus = PopupMenu(сont, v)
+            popupMenus.inflate(R.menu.menu_item_cart)
+            popupMenus.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.item_cart_repost ->{
+                        Log.d("tag", "Репостим")
+                        true
+                    }
+                    R.id.item_cart_favorite ->{
+                        Log.d("tag", "Добавим в избранное")
+                        true
+                    }
+                    R.id.item_cart_delete ->{
+                        Log.d("tag", "Удаляем")
+                        deleteFromCard(basketModel)
+                        true
+                    }
+
+                    else -> true
+                }
+            }
+            popupMenus.show()
+            val popup = PopupMenu::class.java.getDeclaredField("mPopup")
+            popup.isAccessible = true
+            val menu = popup.get(popupMenus)
+            menu.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java).invoke(menu, true)
+
 
         }
 
@@ -112,6 +142,18 @@ class CardAdapterInStock(viewModel: CardViewModel): RecyclerView.Adapter<CardAda
         }
 
 
+    }
+
+    fun deleteFromCard(basketModel: BasketModel){
+        var cardListNew = ArrayList<BasketModel>()
+        cardList.forEach{
+            if(it.CODE_PRODUCT != basketModel.CODE_PRODUCT){
+                cardListNew.add(it)
+            }
+        }
+        cardList = cardListNew
+//        cardList.removeAll(1)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {

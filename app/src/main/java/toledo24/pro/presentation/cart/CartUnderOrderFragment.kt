@@ -20,7 +20,7 @@ class CartUnderOrderFragment: Fragment() {
     private lateinit var binding: FragmentCartUnderOrderBinding
     private val viewModel by viewModel<CardViewModel>()
     //адаптер для RV
-    private val adapterUnderOrder by lazy { CardAdapterUnderOrder() }
+    private val adapterUnderOrder by lazy { CardAdapterUnderOrder(requireActivity(),viewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
