@@ -12,6 +12,7 @@ import toledo24.pro.data.network.basket.ResponseCardModel
 import toledo24.pro.data.network.catalog.ResponseAnalogRelatedModel
 import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.network.catalog.ResponseDetailProductModel
+import toledo24.pro.data.network.mainPage.ResponseBrandList
 import toledo24.pro.data.network.mainPage.ResponseMainPage
 import toledo24.pro.data.room.user.UserEntity
 
@@ -25,6 +26,10 @@ interface RetrofitService {
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @GET("multi/get_menu_list")
     suspend fun getCatalog(): ResponseCatalogModel
+
+    @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
+    @GET("multi/brandsList")
+    suspend fun getBrandList(): ResponseBrandList
 
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @FormUrlEncoded

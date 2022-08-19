@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import toledo24.pro.data.network.mainPage.BannerListModel
+import toledo24.pro.data.network.mainPage.BrandsListModel
 import toledo24.pro.data.network.mainPage.PopularProductsModel
 import toledo24.pro.data.room.catalog.CatalogEntity
 import toledo24.pro.domain.usecase.main.GetMainPageInfoUseCase
@@ -22,15 +23,22 @@ class NavigationViewModel(
     private val _popularList = MutableSharedFlow<List<PopularProductsModel>>()
     val popularList = _popularList.asSharedFlow()
 
+    private val _brandList = MutableSharedFlow<List<BrandsListModel>>()
+    val brandList = _brandList.asSharedFlow()
+
     val fragmentName = MutableLiveData<String>()
 
 init {
     viewModelScope.launch {
-        val catalog = getMainPageInfoUseCase.execute();
+        val catalog = getMainPageInfoUseCase.execute()
+        val brandList = getMainPageInfoUseCase.getBrands()
         fragmentName.value = "main"
         _bannersList.emit(catalog.bannersList)
         _popularList.emit(catalog.popular_products)
+        _brandList.emit(brandList)
     }
+
+
 
 }
 
