@@ -52,6 +52,12 @@ data class PopularProductsModel(
     val PRICE: String,
     @SerializedName("NORMAL_PRICE")
     val NORMAL_PRICE: String,
+    @SerializedName("SALE")
+    val SALE: String? = null,
+    @SerializedName("NORMAL_SALE")
+    val NORMAL_SALE: String? = null,
+    @SerializedName("DIFF")
+    val DIFF: String? = null,
     @SerializedName("PICTURE")
     val PICTURE: String,
     @SerializedName("QUANTITY")

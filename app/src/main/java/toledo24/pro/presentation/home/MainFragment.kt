@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.forEach
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import toledo24.pro.R
 import toledo24.pro.app.POJO.BannerItem
@@ -24,6 +26,7 @@ import toledo24.pro.databinding.FragmentMainBinding
 import toledo24.pro.domain.adapters.BannerAdapter
 import toledo24.pro.domain.adapters.CatalogAdapter
 import toledo24.pro.domain.adapters.HomeAdapter
+import toledo24.pro.domain.adapters.PopularProductAdapter
 import toledo24.pro.presentation.FragmentName
 import toledo24.pro.presentation.MainActivity
 import kotlin.reflect.typeOf
@@ -41,6 +44,8 @@ class MainFragment : Fragment(){
 
 
     private val bannerAdapter by lazy { BannerAdapter() }
+    private val popularProductAdapter by lazy { PopularProductAdapter() }
+    private val r by lazy {Adapter()}
 
 
     override fun onCreateView(
@@ -51,31 +56,31 @@ class MainFragment : Fragment(){
         binding = FragmentMainBinding.inflate(inflater)
         //binding.bannerImageSlider.layoutManager = GridLayoutManager(context, 1)
         binding.bannerImageSlider.setSliderAdapter(bannerAdapter)
-//        binding.bannerImageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
-//        binding.bannerImageSlider.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH;
-//        binding.bannerImageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
-//        binding.bannerImageSlider.scrollTimeInSec = 4; //set scroll delay in seconds :
         binding.bannerImageSlider.startAutoCycle()
+
+
+        binding.popularProducts.adapter = popularProductAdapter
+        binding.popularProducts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 //        viewModel.fragmentName.observe(requireActivity()) { name ->
 //            (listener as FragmentName).getFragmentName(name)
 //        }
 
         lifecycleScope.launchWhenStarted {
+            viewModel.popularList.collect {
+                it.forEach { value ->
+                    popularProductAdapter.addProduct(value)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
             viewModel.bannersList.collect {
                 it.forEach { value ->
                     bannerAdapter.addBanner(value)
                 }
             }
         }
-
-//        lifecycleScope.launchWhenStarted {
-//            viewModel.bannersList.collect {
-//                it.forEach { value ->
-//                    imgLinks.add(value.PICTURE)
-//                }
-//            }
-//        }
 
 
         return binding.root
