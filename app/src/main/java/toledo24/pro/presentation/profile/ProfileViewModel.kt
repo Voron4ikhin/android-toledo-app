@@ -18,8 +18,8 @@ class ProfileViewModel(
 
     fun getFavoriteCount(){
         viewModelScope.launch{
-            val favoriteCount = getFavoriteUseCase.getCount();
-            _favoriteCount.emit(favoriteCount)
+            val favorite = getFavoriteUseCase.getCount().size;
+            _favoriteCount.emit(favorite)
         }
     }
 

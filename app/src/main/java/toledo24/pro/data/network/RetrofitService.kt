@@ -14,6 +14,7 @@ import toledo24.pro.data.network.catalog.ResponseCatalogListModel
 import toledo24.pro.data.network.catalog.ResponseDetailProductModel
 import toledo24.pro.data.network.mainPage.ResponseBrandList
 import toledo24.pro.data.network.mainPage.ResponseMainPage
+import toledo24.pro.data.network.profile.ResponseFavoriteCompareModel
 import toledo24.pro.data.room.user.UserEntity
 
 
@@ -77,6 +78,13 @@ interface RetrofitService {
     suspend fun getBasket(
         @Field("USER_ID") USER_ID: String,
     ): ResponseCardModel
+
+    @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
+    @FormUrlEncoded
+    @POST("multi/getDefaultDataAndroid")
+    suspend fun getFavoriteCompare(
+        @Field("USER_ID") USER_ID: String,
+    ): ResponseFavoriteCompareModel
 
     @Headers("x-api-auth-token: 4e29b4b06a67d740-c66f8314afb9eb01-506f385e1fc5e2dc")
     @GET("multi/getProduct")

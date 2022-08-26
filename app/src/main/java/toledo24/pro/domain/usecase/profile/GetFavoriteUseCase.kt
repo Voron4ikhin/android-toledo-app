@@ -1,13 +1,15 @@
 package toledo24.pro.domain.usecase.profile
 
-import toledo24.pro.data.network.mainPage.BannerAndPopular
-import toledo24.pro.domain.repository.FavoriteRepository
+import toledo24.pro.domain.repository.CardRepository
+import toledo24.pro.domain.repository.ProfileRepository
 
-class GetFavoriteUseCase() {
+class GetFavoriteUseCase(
+    private val profileRepository: ProfileRepository
+) {
 
-    suspend fun getCount(): Array<Int> {
-//        val response = FavoriteRepository.getCount()
-//        return response.result.body
+    suspend fun getCount(): List<String> {
+        val response = profileRepository.getFavoriteCompare("13523")
+        return response.result.favorite
     }
 
 }
