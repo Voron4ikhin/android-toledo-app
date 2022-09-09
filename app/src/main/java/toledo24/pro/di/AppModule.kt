@@ -10,6 +10,7 @@ import toledo24.pro.presentation.catalog.CatalogDetailFragmentViewModel
 import toledo24.pro.presentation.catalog.CatalogFragmentViewModel
 import toledo24.pro.presentation.catalog.CatalogProductsViewModel
 import toledo24.pro.presentation.home.NavigationViewModel
+import toledo24.pro.presentation.profile.ProfileInfoFragmentViewModel
 import toledo24.pro.presentation.profile.ProfileViewModel
 import toledo24.pro.presentation.welcome.WelcomeViewModel
 
@@ -67,7 +68,15 @@ val appModule = module {
     }
 
     viewModel{
-        ProfileViewModel()
+        ProfileViewModel(
+            getFavoriteUseCase = get()
+        )
+    }
+
+    viewModel{
+        ProfileInfoFragmentViewModel(
+            getUserInfoUseCase = get()
+        )
     }
 
 }

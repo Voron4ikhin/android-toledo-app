@@ -2,16 +2,10 @@ package toledo24.pro.di
 
 
 import org.koin.dsl.module
-import toledo24.pro.data.repositoryimpl.CatalogRepositoryImpl
-import toledo24.pro.data.repositoryimpl.UserRepositoryImpl
-import toledo24.pro.domain.repository.CatalogRepository
-import toledo24.pro.domain.repository.UserRepository
 import toledo24.pro.data.network.RetrofitService
-import toledo24.pro.data.repositoryimpl.CardRepositoryImpl
-import toledo24.pro.data.repositoryimpl.MainPageRepositoryImpl
+import toledo24.pro.data.repositoryimpl.*
 import toledo24.pro.data.room.RoomService
-import toledo24.pro.domain.repository.CardRepository
-import toledo24.pro.domain.repository.MainPageRepository
+import toledo24.pro.domain.repository.*
 
 
 val dataModule = module {
@@ -45,6 +39,12 @@ val dataModule = module {
 
     single<CardRepository> {
         CardRepositoryImpl(
+            retrofitService = get()
+        )
+    }
+
+    single<ProfileRepository>{
+        ProfileRepositoryImpl(
             retrofitService = get()
         )
     }

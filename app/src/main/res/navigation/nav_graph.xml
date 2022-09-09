@@ -28,7 +28,11 @@
         android:id="@+id/item_profile"
         android:name="toledo24.pro.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_item_profile_to_profileDetailFragment"
+            app:destination="@id/profileDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/item_subcatalog"
         android:name="toledo24.pro.presentation.catalog.SubCatalogFragment"
@@ -75,4 +79,16 @@
         android:name="toledo24.pro.presentation.catalog.CatalogDetailFragment"
         android:label="fragment_catalog_detail"
         tools:layout="@layout/fragment_catalog_detail" />
+    <fragment
+        android:id="@+id/profileDetailFragment"
+        android:name="toledo24.pro.presentation.profile.ProfileDetailFragment"
+        android:label="ProfileDetailFragment" >
+        <action
+            android:id="@+id/action_profileDetailFragment_to_autorizationActivity"
+            app:destination="@id/autorizationActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/autorizationActivity"
+        android:name="toledo24.pro.presentation.autorization.AutorizationActivity"
+        android:label="AutorizationActivity" />
 </navigation>

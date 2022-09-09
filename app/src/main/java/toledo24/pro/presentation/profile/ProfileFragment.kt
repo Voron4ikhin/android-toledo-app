@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,6 +34,10 @@ class ProfileFragment : Fragment() {
             viewModel.favoriteCount.collect {
                 //кол-во избранных товаров
             }
+        }
+
+        binding.profileDetail.setOnClickListener{
+            findNavController().navigate(R.id.action_item_profile_to_profileDetailFragment)
         }
         return binding.root
     }

@@ -7,6 +7,8 @@ import toledo24.pro.domain.usecase.basket.AddToBasketUseCase
 import toledo24.pro.domain.usecase.basket.GetCardUseCase
 import toledo24.pro.domain.usecase.catalog.*
 import toledo24.pro.domain.usecase.main.GetMainPageInfoUseCase
+import toledo24.pro.domain.usecase.profile.GetFavoriteUseCase
+import toledo24.pro.domain.usecase.profile.GetUserInfoUseCase
 import toledo24.pro.domain.usecase.welcome.CheckingUserInfoRoomUseCase
 
 
@@ -54,6 +56,14 @@ val domainModule = module {
 
     factory<GetCardUseCase>{
         GetCardUseCase(cardRepository = get(), userRepository = get())
+    }
+
+    factory<GetFavoriteUseCase>{
+        GetFavoriteUseCase(profileRepository = get())
+    }
+
+    factory<GetUserInfoUseCase>{
+        GetUserInfoUseCase(profileRepository = get())
     }
 
 }
